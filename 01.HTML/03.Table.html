@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table</title>
     <style>
-        th{padding:5px;}
-        td{text-align:center; padding:5px;}
+        th {
+            padding: 5px;
+        }
+
+        td {
+            text-align: center;
+            padding: 5px;
+        }
     </style>
 </head>
 <!-- 1. Table
@@ -15,11 +22,12 @@
     Output 용도 반복문
 3. Form
     Input -->
+
 <body style="margin-left:50px">
     <h1>보여주는 용도로 사용되는 테이블</h1>
     <table border="1">
         <thead>
-            <tr>        <!-- table row -->
+            <tr> <!-- table row -->
                 <th>순서</th>
                 <th>제목</th>
                 <th>내용</th>
@@ -59,22 +67,24 @@
     </form>
     <br>
     <h3>로그인 with Table</h3>
-    <form action="/user/login" method="post"></form>
-    <table>
-        <tr>
-            <td style="text-align:left;">아이디:</td>
-            <td><input type="text" name="uid"></td>
-        </tr>
-        <tr>
-            <td style="text-align:left;">패스워드:</td>
-            <td><input type="password" name="pwd"></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-            <input type="submit" value="확인">
-            <input type="reset" value="취소">
-            </td>
-        </tr>
-    </table>
+    <form action="/user/login" method="post">
+        <table>
+            <tr>
+                <td style="text-align:left;">아이디:</td>
+                <td><input type="text" name="uid"></td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">패스워드:</td>
+                <td><input type="password" name="pwd"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="확인">
+                    <input type="reset" value="취소">
+                </td>
+            </tr>
+        </table>
+    </form>
 </body>
+
 </html>
