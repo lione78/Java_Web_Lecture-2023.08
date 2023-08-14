@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar bg-light"> <!--navbar-dark-->
         <div class="container-fluid">
-            <a class="navbar-brand text-dark fs-5 fst-italic" href="#">
+            <a class="navbar-brand text-dark fs-5 fst-italic" data-bs-toggle="modal" data-bs-target="#myModal" href="#">
                 <i class="bi bi-reception-4"></i> lionel Co.
             </a>
             <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#list">
@@ -35,6 +35,22 @@
             </div>
         </div>
     </nav>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card" style="width:100%">
+                        <img class="card-img-top" src="img/profile.png" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Tommy Oh</h4>
+                            <p class="card-text">Human Education Center</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <!-- Carousel -->
         <div id="demo" class="carousel slide" data-bs-ride="carousel" width="100%">
