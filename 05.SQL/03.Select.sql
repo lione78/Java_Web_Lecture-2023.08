@@ -78,7 +78,3 @@ select
     from orders;
 -- 대한미디어에서 출간한 책 가격의 평균은?
 select avg(price) as average_price from book where publisher like '%대한미디어%';
-
-/*
-*   연습문제
-*/
