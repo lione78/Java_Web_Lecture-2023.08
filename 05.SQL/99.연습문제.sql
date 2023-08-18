@@ -9,7 +9,7 @@ select bookname, price from book where price >= 20000;
 -- 1.3
 select sum(saleprice) as sum_saleprice from orders where custid = 1;
 select sum(o.saleprice) from orders o
-        join customer c         // 필드 늘어남
+        join customer c        -- 필드 늘어남
         on o.custid = c.custid
         where c.name = '박지성';
 -- 1.4
