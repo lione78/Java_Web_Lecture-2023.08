@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Controller
-@RequestMapping("/jsp")			// /demo/jsp/schedule
+//@Controller
+//@RequestMapping("/jsp")			// /demo/jsp/schedule
 public class JspController {
 	
 	@GetMapping("/sample")
