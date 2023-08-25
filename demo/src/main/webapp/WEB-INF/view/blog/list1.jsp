@@ -13,14 +13,6 @@
         th { text-align: center; width: 2%; background-color: dimgray; height: 50px; }
         td { height: 50px; text-align: center; }
     </style>
-    <script>
-    	function search(){
-    		let field = document.getElementById('field').value;
-    		let query = document.getElementById('query').value;
-    		// console.log("search()", field, query);
-    		location.href = '/demo/blog/list?f=' + field + '&q=' + query;
-    	}    	
-    </script>
 </head>
 <body>
 	<%@ include file="./common/top.jspf"%>
@@ -30,34 +22,14 @@
 			<%@ include file="./common/aside.jspf" %>
 			<!-- ================= Main ==================== -->
 			<div class="col-9">
-				<table class="table table-sm table-borderless">
-					<tr>
-						<td style="width: 52%; text-align: left;">
-							<h3>
-								<strong>블로그 목록</strong>
-								<span style="font-size: 0.6em;">
-									<a href="/demo/blog/write">
-										<i class="ms-5 fa-regular fa-file-lines"></i> 글쓰기
-									</a>
-								</span>
-							</h3>						
-						</td>
-						<td style="width: 15%;">
-							<select class="form-select" id="field">
-		                        <option value="title" ${field eq 'title' ? 'selected' : ''}>제목</option>
-		                        <option value="content" ${field eq 'content' ? 'selected' : ''}>본문</option>
-		                        <option value="penName" ${field eq 'penName' ? 'selected' : ''}>필명</option>
-	                    	</select>
-						</td>
-						<td style="width: 25%;">
-							<input class="form-control" placeholder="검색할 내용" id="query" value="${query}"
-									onkeyup="if(window.event.keyCode==13) search()"> <%-- Key Up시 13 엔터키 --%>
-						</td>
-						<td style="width: 8%;">
-							<button class="btn btn-outline-primary" onclick="search()">검색</button>
-						</td>
-					</tr>
-				</table>
+				<h3>
+					<strong>블로그 목록</strong>
+					<span style="font-size: 0.6em;">
+						<a href="/demo/blog/write">
+							<i class="ms-5 fa-regular fa-file-lines"></i> 글쓰기
+						</a>
+					</span>
+				</h3>
 				<hr>
 				<table class="table table-striped">
 					<tr class="table-secondary">

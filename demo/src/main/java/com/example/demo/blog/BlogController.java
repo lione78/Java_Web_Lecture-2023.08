@@ -2,8 +2,6 @@ package com.example.demo.blog;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,18 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
-@RequestMapping("/blog")
+//@Controller
+//@RequestMapping("/blog")
 public class BlogController {
 //	private BlogDao bDao = new BlogDao();
-	@Autowired private BlogDao bDao;		// Spring DI 사용법 - BlogDao() 객체를 생성해서 injection
+//	@Autowired private BlogDao bDao;		// Spring DI 사용법 - BlogDao() 객체를 생성해서 injection
+	@Autowired private BlogService blogService;	// BlogServiceOracleImpl가 하나여서 자동으로 생성, MySQL이 있으면 @만 바꿈.
 	
 	@GetMapping("/list")
-	public String list(Model model) {
-		List<Blog> list = bDao.getBlogList("title", "");
+	public String list(@RequestParam(name="f", defaultValue="title") String field, 
+			@RequestParam(name="q", defaultValue="") String query, Model model) {
+		List<Blog> list = blogService.getBlogList(field, query);
 		model.addAttribute("blogList", list);
 		model.addAttribute("menu", "blog");
+		model.addAttribute("field", field);
+		model.addAttribute("query", query);
 		return "blog/list";  
 	}
 	
@@ -36,15 +39,15 @@ public class BlogController {
 	public String writeProc(Blog blog) {		// 자동 객체 생성 blog.getPenName(), blog.getTitle(), blog.getContent()
 //	public String writeProc(String penName, String title, String content) {
 //		Blog blog = new Blog(penName, title, content);
-		bDao.insertBlog(blog);
+		blogService.insertBlog(blog);
 		return "redirect:/blog/list";
 	}
 	
 	@GetMapping("/detail/{bid}")
 	public String detail(@PathVariable int bid, String option, Model model) {
 		if(option == null || option.equals(""))		// DNI 옵션이 있으면 증가시키지 않음.
-			bDao.increaseViewCount(bid);		// 조회수 증가
-		Blog blog = bDao.getBlog(bid);		// blog 내용 가져옴
+			blogService.increaseViewCount(bid);		// 조회수 증가
+		Blog blog = blogService.getBlog(bid);		// blog 내용 가져옴
 		model.addAttribute("blog", blog);	
 		model.addAttribute("menu", "blog"); // blog link 활성화
 		return "blog/detail";
@@ -52,7 +55,7 @@ public class BlogController {
 	
 	@GetMapping("/update/{bid}")	// list에서 update로 들어갈때
 	public String updateForm(@PathVariable int bid, Model model) {
-		Blog blog = bDao.getBlog(bid);
+		Blog blog = blogService.getBlog(bid);
 		model.addAttribute("blog", blog);
 		model.addAttribute("menu", "blog");
 		return "blog/update";
@@ -67,7 +70,7 @@ public class BlogController {
 //		String title = req.getParameter("title"); 
 //		String content = req.getParameter("content");
 //		Blog blog = new Blog(bid, penName, title, content)
- 		bDao.updateBlog(blog);
+ 		blogService.updateBlog(blog);
 		return "redirect:/blog/detail/" + blog.getBid() + "?option=DNI";	// detail로 redirect할 때 bid도 같이 넘김.
 	}																		// DNI : Do not Increase
 	
@@ -80,7 +83,7 @@ public class BlogController {
 	
 	@GetMapping("/deleteConfirm/{bid}")
 	public String deleteConfirm(@PathVariable int bid) {
-		bDao.deleteBlog(bid);
+		blogService.deleteBlog(bid);
 		return "redirect:/blog/list";
 	}
 }

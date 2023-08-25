@@ -18,7 +18,7 @@
     		let field = document.getElementById('field').value;
     		let query = document.getElementById('query').value;
     		// console.log("search()", field, query);
-    		location.href = '/demo/blog/list?f=' + field + '&q=' + query;
+    		location.href = '/demo/member/list?f=' + field + '&q=' + query;
     	}    	
     </script>
 </head>
@@ -34,19 +34,14 @@
 					<tr>
 						<td style="width: 52%; text-align: left;">
 							<h3>
-								<strong>블로그 목록</strong>
-								<span style="font-size: 0.6em;">
-									<a href="/demo/blog/write">
-										<i class="ms-5 fa-regular fa-file-lines"></i> 글쓰기
-									</a>
-								</span>
+								<strong>회원 목록</strong>
 							</h3>						
 						</td>
 						<td style="width: 15%;">
 							<select class="form-select" id="field">
-		                        <option value="title" ${field eq 'title' ? 'selected' : ''}>제목</option>
+		                        <option value="userid" ${field eq 'userid' ? 'selected' : ''}>ID</option>
+		                        <option value="uname" ${field eq 'uname' ? 'selected' : ''}>이름</option>
 		                        <option value="content" ${field eq 'content' ? 'selected' : ''}>본문</option>
-		                        <option value="penName" ${field eq 'penName' ? 'selected' : ''}>필명</option>
 	                    	</select>
 						</td>
 						<td style="width: 25%;">
@@ -61,19 +56,19 @@
 				<hr>
 				<table class="table table-striped">
 					<tr class="table-secondary">
+						<th style="width: 8%">SID</th>
 						<th style="width: 8%">ID</th>
-						<th style="width: 14%">필명</th>
-						<th style="width: 50%">제목</th>
-						<th style="width: 20%">작성시간</th>
-						<th style="width: 10%">조회수</th>
+						<th style="width: 14%">이름</th>
+						<th style="width: 50%">간략소개</th>
+						<th style="width: 20%">가입시간</th>
 					</tr>
-				<c:forEach var="blog" items="${blogList}">
-					<tr>					
-						<td>${blog.bid}</td>
-						<td>${blog.penName}</td>
-						<td><a href="/demo/blog/detail/${blog.bid}"> ${blog.title} </a></td>
-						<td>${fn:replace(fn:substring(blog.modTime, 2, 16), 'T', ' ')}</td>
-						<td>${blog.viewCount}</td>
+				<c:forEach var="member" items="${memberList}">
+					<tr>											
+						<td>${member.sid}</td>
+						<td><a href="/demo/member/detail/${member.sid}">${member.userid}</a></td>
+						<td>${member.uname}</td>
+						<td>${fn:substring(member.content, 0, 30)}</td>
+						<td>${fn:replace(fn:substring(member.modTime, 2, 16), 'T', ' ')}</td>
 					</tr>
 				</c:forEach>
 				</table>
