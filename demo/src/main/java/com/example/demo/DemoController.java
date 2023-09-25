@@ -173,8 +173,16 @@ public class DemoController {
 						stack.push(s);
 					}
 				}
-			} else
+			} else {
 				stack.push(op_);
+			}
+			String element1 = stack.pop();
+			String element2 = stack.pop();
+			if (element2.equals("+") || element2.equals("-") || element2.equals("*") || element2.equals("/"))
+				stack.push(element2);
+			else {
+				stack.push(element2); stack.push(element1);	
+			}
 			session.setAttribute("stack", stack);
 			model.addAttribute("eval", getEval(stack));
 		} else {
