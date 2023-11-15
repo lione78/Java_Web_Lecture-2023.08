@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//@Controller
-//@RequestMapping("/blog")
+@Controller
+@RequestMapping("/blog")
 public class BlogController {
 //	private BlogDao bDao = new BlogDao();
 //	@Autowired private BlogDao bDao;		// Spring DI 사용법 - BlogDao() 객체를 생성해서 injection
