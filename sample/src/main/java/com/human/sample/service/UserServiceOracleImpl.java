@@ -1,0 +1,65 @@
+package com.human.sample.service;
+
+import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.human.sample.db.UserDaoOracle;
+import com.human.sample.entity.User;
+
+// DI 이용 annotation, 나중에 Service 바뀌면 바꿔줌
+@Service
+public class UserServiceOracleImpl implements UserService {
+	@Autowired private UserDaoOracle userDao;
+	
+	@Override
+	public int getUserCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public User getUser(String uid) {
+		User user = userDao.getUser(uid);
+		return user;
+	}
+
+	@Override
+	public List<User> getUserList(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertUser(User user) {
+		userDao.insertUser(user);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUser(String uid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int login(String uid, String pwd) {
+		User user = userDao.getUser(uid);
+		if (user == null) {		// 해당 user가 없음
+			return UID_NOT_EXIST;
+		}
+		if (BCrypt.checkpw(pwd, user.getPwd())) {
+			return CORRECT_LOGIN;
+		} else {
+			return WRONG_PASSWORD;
+		}
+	}
+
+}
