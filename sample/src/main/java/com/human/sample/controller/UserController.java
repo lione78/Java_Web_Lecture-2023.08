@@ -1,4 +1,4 @@
-package com.human.sample.cotroller;
+package com.human.sample.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +70,7 @@ public class UserController {
 		model.addAttribute("userList", list);
 		
 		int totalUsers = userService.getUserCount();
-		int totalPages = (int) Math.ceil((double)totalUsers / userService.RECORDS_PER_PAGE);
+		int totalPages = (int) Math.ceil((double)totalUsers / UserService.RECORDS_PER_PAGE);
 		List<String> pageList = new ArrayList<>();
 		for (int i=1; i<=totalPages; i++)
 			pageList.add(String.valueOf(i));

@@ -10,6 +10,11 @@
 		.disabled-link	{ pointer-events: none; }
 	</style>
 	<script>
+		let jsonString = ${json}
+		let jsonObject = JSON.parse(jsonString);
+		console.log(jsonObject);
+	</script>
+	<script>
 		function updateFunc(uid){
 			$.ajax({
 				type: 'GET',

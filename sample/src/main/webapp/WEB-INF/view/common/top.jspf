@@ -17,10 +17,10 @@
                 </li>
                 <li class="nav-item dropdown ms-3">
                     <a class="nav-link dropdown-toggle ${menu eq 'ai' ? 'active' : ''}" href="#" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-brain"></i> 인공지능
+                        <i class="fa-solid fa-brain"></i> API
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Link 1</a></li>
+                        <li><a class="dropdown-item" href="/sample/api/translate">카카오 번역</a></li>
                         <li><a class="dropdown-item" href="#">Link 2</a></li>
                         <li><a class="dropdown-item" href="#">Link 3</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -28,19 +28,19 @@
                     </ul>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link ${menu eq 'schedule' ? 'active' : ''}" href="#"><i class="fa-solid fa-calendar-days"></i> 스케쥴</a>
+                    <a class="nav-link ${menu eq 'schedule' ? 'active' : ''}" href="/sample/schedule/calendar"><i class="fa-solid fa-calendar-days"></i> 스케쥴</a>
                 </li>
-                <c:if test="${not empty sessUid}">
                 <li class="nav-item ms-3">
+                <c:if test="${not empty sessUid}">
                     <a class="nav-link" href="/sample/user/logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
-                </li>
                 </c:if>
                 <c:if test="${empty sessUid}">
-                <li class="nav-item ms-3">
-                    <a class="nav-link" href="/sample/user/login"><i class="fas fa-sign-out-alt"></i> 로그인</a>
-                </li>
+                    <a class="nav-link" href="/sample/user/login"><i class="fas fa-sign-in-alt"></i> 로그인</a>
                 </c:if>
+                </li>
             </ul>
-            <span class="navbar-text me-3">${sessUname}님 환영합니다.</span>
+            <c:if test="${not empty sessUname}">
+            	<span class="navbar-text me-3">${sessUname}님 환영합니다.</span>
+            </c:if>
         </div>
     </nav>

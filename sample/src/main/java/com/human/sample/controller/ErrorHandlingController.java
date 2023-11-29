@@ -1,4 +1,4 @@
-package com.human.sample.cotroller;
+package com.human.sample.controller;
 
 import java.time.LocalDateTime;
 
