@@ -18,9 +18,9 @@ import com.human.sample.entity.Anniversary;
 @Service
 public class SchedUtil {
 
-//	@Value("${govDataApiKey}") private String govDataApiKey;
+	@Value("${govDataApiKeys}") private String govDataApiKeys;
 	
-	private String govDataApiKey = "9Zp+5whWxxado3Nx7NTaYyDQO02umRtF1CHk8RONxCaVGSLlwR4r/+nuoPOLfkLVXAICEbYHMfWBTvxuSYi2Zw==";
+//	private String govDataApiKeys = "9Zp+5whWxxado3Nx7NTaYyDQO02umRtF1CHk8RONxCaVGSLlwR4r/+nuoPOLfkLVXAICEbYHMfWBTvxuSYi2Zw==";
 	
 	public boolean isLeapYear(int year) {
 		if (year % 400 == 0)
@@ -41,15 +41,13 @@ public class SchedUtil {
 	}
 	
 	public List<Anniversary> getAnnivList(String option, int year) {
-		System.out.println(govDataApiKey);
 		List<Anniversary> list = new ArrayList<>();
 		String apiUrl = option.equals("24절기") ?
 				"http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/get24DivisionsInfo" :
 				"http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo";
 		try {
 			apiUrl += "?_type=json&numOfRows=50&solYear=" + year
-					+ "&ServiceKey=" + URLEncoder.encode(govDataApiKey, "utf-8");
-			System.out.println(govDataApiKey);
+					+ "&ServiceKey=" + URLEncoder.encode(govDataApiKeys, "utf-8");
 			URL url = new URL(apiUrl);
 			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "utf-8"));
 			
